@@ -1,0 +1,33 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	// Simple basic for loop
+	for i := 1; i <= 5; i++ {
+		fmt.Println(i)
+	}
+
+	// Iterate over collections
+	numbers := []int{1, 2, 3, 4, 5}
+	for index, value := range numbers {
+		fmt.Printf("Index is: %d, Value is: %d\n", index, value)
+	}
+
+	for i := 1; i <= 10; i++ {
+		if i%2 == 0 {
+			continue
+		}
+		fmt.Println(i)
+		if i == 5 {
+			break
+		}
+	}
+
+	// Simplifing the for loop
+	for i := range 10 {
+		fmt.Println(10 - i)
+	}
+	fmt.Print("The End")
+}
