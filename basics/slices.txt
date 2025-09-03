@@ -1,0 +1,53 @@
+package main
+
+import (
+	"fmt"
+	"slices"
+)
+
+func main() {
+	// var sliceName[]ElementType
+	// var numbers []int
+	// numbers = []int{1, 2}
+
+	// fmt.Println(numbers)
+
+	// slice1 := make([]int, 5) //creating a slice with a known size or capacity
+
+	arrayA := [5]int{1, 2, 3, 4, 5}
+	var slice = arrayA[1:3] // starts from index 1 and ends before index 3 so : [2, 3]
+	fmt.Println(slice)
+
+	slice = append(slice, 7, 8)
+	fmt.Println(slice)
+
+	// copy a slice into another slice
+	sliceCopied := make([]int, len(slice))
+	copy(sliceCopied, slice)
+	fmt.Println("Copy of slice:", sliceCopied)
+
+	// nil slice = slice with no value
+	// var nilSlice []int
+
+	for i, v := range slice {
+		fmt.Printf("indx %d value is %d\n", i, v)
+	}
+
+	// slice[3] = 50
+	// fmt.Println(slice)
+
+	// comparung slices
+	if slices.Equal(slice, sliceCopied) {
+		fmt.Println("EQUAL")
+	}
+
+	//slicing the slice
+	newSlice := slice[1:2]
+	fmt.Println("New slice", newSlice)
+
+	// len is the number of items in the slice
+	// cap is the number of items from the start index to the end of the original array or slice
+	fmt.Println("the cap of newslice", cap(newSlice))
+	fmt.Println("the length of newslice", len(newSlice))
+
+}

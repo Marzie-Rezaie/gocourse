@@ -1,0 +1,54 @@
+package main
+
+import "fmt"
+
+func main() {
+	// var arrayName [size]arrayType
+	// var numbers [5]int
+	// fmt.Println(numbers)
+
+	// numbers[4] = 23
+	// fmt.Println(numbers)
+
+	// var fruits = [4]string{"apple", "banana", "orange", "watermelon"}
+	// fmt.Println(fruits)
+
+	// Original := [3]int{1, 2, 3}
+	// Copy := Original
+	// Copy[0] = 100
+
+	// fmt.Println("Original:", Original)
+	// fmt.Println("Copy:", Copy)
+
+	// short method to iterate an array using a for loop
+
+	// for index, value := range numbers {
+	// 	fmt.Printf(" for index %d value is %d \n", index, value)
+	// }
+
+	// for i, v := range numbers {
+	// 	fmt.Printf(" for index %d value is %d \n", i, v)
+	// }
+
+	// for _, v := range numbers {
+	// 	fmt.Printf(" value is %d \n", v)
+	// }
+
+	// lengh := len(numbers)
+	// fmt.Println("Array Length:", lengh)
+
+	// matrix := [3][3]int{
+	// 	{1, 2, 3},
+	// 	{4, 5, 6},
+	// 	{1, 2, 3},
+	// }
+	// fmt.Println("Martix", matrix)
+
+	Original := [3]int{1, 2, 3}
+	var Copy *[3]int
+	Copy = &Original
+	Copy[0] = 100
+
+	fmt.Println("Original:", Original)
+	fmt.Println("Copy:", Copy)
+}

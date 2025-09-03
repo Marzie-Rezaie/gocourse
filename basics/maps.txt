@@ -1,0 +1,66 @@
+package main
+
+import (
+	"fmt"
+	"maps"
+)
+
+func main() {
+	// var m map[keyType]ValueType
+	// m = make(map[keyType]valueType)
+
+	//using a map literal
+	// m = map[keyType]valueType{
+	// 	key1: value1,
+	// 	key2: value2
+	// }
+
+	myMap := make(map[string]int)
+	fmt.Println(myMap)
+
+	myMap["key1"] = 9
+	myMap["Code"] = 18
+	fmt.Println(myMap)
+
+	delete(myMap, "key1")
+	fmt.Println(myMap)
+
+	// clears all the key value data from the map
+	// clear(myMap)
+	// fmt.Println(myMap)
+
+	// the second variable indicates that there is a value assigned to this given key (usually variable name is ok)
+	value, unknowValue_ok := myMap["Code"]
+	// _, unknowValue := myMap["Code"]
+	fmt.Println(value, unknowValue_ok)
+
+	myMap2 := map[string]int{"a": 1, "b": 2}
+	fmt.Println(myMap2)
+
+	// compare maps
+	if maps.Equal(myMap, myMap2) {
+		fmt.Println("EQUAL")
+	} else {
+		fmt.Println("NOT EQUAL")
+	}
+
+	for key, value := range myMap2 {
+		fmt.Printf("for key %s value is %d\n", key, value)
+	}
+
+	var myMap3 map[string]string
+	if myMap3 == nil {
+		fmt.Println("myMap3 is empty - nil")
+	}
+
+	// myMap3["key"] = "value" // error : because can not change nil to a new value. we should use make
+	myMap3 = make(map[string]string)
+	myMap3["key"] = "value"
+
+	fmt.Println("myMap3 length:", len(myMap3))
+
+	// multidimentional maps
+	var myMap4 = make(map[string]map[string]string)
+	myMap4["orgKey"] = myMap3
+	fmt.Println(myMap4)
+}
