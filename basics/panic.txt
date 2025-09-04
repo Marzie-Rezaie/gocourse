@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+func main() {
+	// panic(interface{})
+
+	process(0)
+}
+func process(input int) {
+
+	defer fmt.Println("defer something")
+	if input <= 0 {
+		fmt.Println("before panic")
+		panic("Input must be greater than 0")
+		fmt.Println("after panic")
+	}
+	fmt.Println("Input:", input)
+}

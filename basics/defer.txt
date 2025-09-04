@@ -1,0 +1,19 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	// defers run in LIFO order
+
+	process(2)
+}
+func process(i int) {
+	fmt.Println("i defer value", i)
+	defer fmt.Println("DEFER1 - last")
+	defer fmt.Println("DEFER2 - last")
+	defer fmt.Println("DEFER3 - last")
+	i++
+	fmt.Println("normal statement")
+	fmt.Println("i real value", i)
+}

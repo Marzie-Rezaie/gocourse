@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	process()
+	fmt.Println("returned from Process")
+
+	defer fmt.Println("deferred something")
+	os.Exit(1)
+
+	// this code will never be executed
+	fmt.Println("some code")
+}
+func process() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered:", r)
+		}
+	}()
+
+	fmt.Println("Start Process")
+	panic("something went wrong")
+	fmt.Println("End Process")
+}
