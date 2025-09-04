@@ -1,0 +1,27 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	fmt.Println(factorial(5))
+	fmt.Println(factorial(10))
+
+	fmt.Println(diginSum(55))
+}
+func factorial(n int) int {
+	//base case: factorail of 0 is 1
+	if n == 0 {
+		return 1
+	}
+	//recursive case: factorial of n is: n * factorial(n-1)
+	return n * factorial(n-1)
+}
+
+func diginSum(n int) int {
+	//base case
+	if n < 10 {
+		return n
+	}
+	return n%10 + diginSum(n/10)
+}

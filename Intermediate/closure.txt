@@ -1,0 +1,46 @@
+package main
+
+import "fmt"
+
+func main() {
+	// sequence := adder()
+	// fmt.Println(sequence())
+	// fmt.Println(sequence())
+	// fmt.Println(sequence())
+	// fmt.Println(sequence())
+
+	// //this Sequence two is Reinitializing I to zero.
+	// sequence2 := adder()
+	// fmt.Println(sequence2())
+	// fmt.Println(sequence2())
+
+	subtractor := func() func(int) int {
+		number := 99
+		return func(x int) int {
+			number -= x
+			return number
+		}
+	}()
+	// using the subtractor closure
+	fmt.Println(subtractor(5))
+	fmt.Println(subtractor(5))
+	fmt.Println(subtractor(5))
+
+	// So this is how closures work. So in this example subtractor is a function that returns another function.
+	//  And the return function captures the variable number from its surrounding context. The surrounding context is the Subtractor function.
+}
+
+// adder function is called only once okay. So that's why I is initialized to zero only once. And that's it.
+// So when we are calling the return function sequence, it. Increments I and returns the updated value. So now in memory we only have I. And it's not getting initialized.
+// Therefore, subsequent calls to the sequence function continue to increment I from the value it had in the previous call.
+// Once the closure is created, subsequent calls to the closure that is, the returned function use and modify the captured value of I.
+
+func adder() func() int {
+	i := 0
+	fmt.Println("initial value of i:", i)
+	return func() int {
+		i++
+		fmt.Println("added to i")
+		return i
+	}
+}

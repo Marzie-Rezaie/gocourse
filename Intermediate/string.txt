@@ -1,0 +1,35 @@
+package main
+
+import "fmt"
+
+func main() {
+	message := "Hello "
+	name := "Marzie"
+	fmt.Println("lenght:", len(message))
+	fmt.Println("first character", message[0]) // The ASCII code of letter H
+
+	//concat
+	fmt.Println(message + name)
+
+	//compare
+	if message != name {
+		fmt.Println("NOT EQUAL")
+	}
+
+	// Itertate between string characters
+	for i, char := range message {
+		fmt.Printf("in index %d, character is %c\n", i, char)
+	}
+
+	var char rune = 'س'
+	fmt.Println(char) // prints the ASCII code of the character
+
+	fmt.Printf("%c\n", char) // prints the character itself
+
+	// convert rune to string
+	cstr := string(char)
+	fmt.Println(cstr)
+
+	fmt.Printf("type of char is: %T\n", char)
+	fmt.Printf("type of sctr is: %T\n", cstr)
+}

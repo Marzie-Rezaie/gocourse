@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+
+func main() {
+	var ptr *int
+	var a int = 10
+	ptr = &a //referencing
+
+	fmt.Println(ptr)  // it will print the memory address of a
+	fmt.Println(*ptr) // It will print the value stored in the address (dereferencing)
+
+	modifyValue(ptr)
+	fmt.Println("the modified value of a is:", a)
+
+}
+
+// instead of working on a copy of the variable, it directly accesses the value in the address using pointer.
+func modifyValue(ptr *int) {
+	*ptr++
+}
