@@ -1,0 +1,83 @@
+package main
+
+import "fmt"
+
+// So when we are using generics, it's not that we are accepting any type in our function or structure.
+// It's not like interface. In interface, we are accepting any kind of value together in the same function.
+// But when using generics, we are using the same type of values.
+// If our list is accepting values of int, so it will keep on accepting values of int only and not string or float.
+
+func main() {
+	// x, y := 1, 2
+	// x, y = swap(x, y)
+	// fmt.Println(x, y)
+
+	// x, y := "a", "b"
+	// x, y = swap(x, y)
+	// fmt.Println(x, y)
+
+	stack1 := stack[int]{elements: []int{2, 3, 4}}
+	stack1.push(1)
+	stack1.push(14)
+	stack1.push(23)
+	fmt.Println(stack1)
+
+	// stack1.pop()
+	fmt.Println(stack1.pop())
+	fmt.Println(stack1)
+
+	fmt.Println("is the stack empty?", stack1.isEmpty())
+
+	// now using the same stack struct for type string:
+	stack2 := stack[string]{elements: []string{"ali", "ahamd", "john"}}
+	stack2.push("mary")
+	stack2.push("Hussein")
+	stack2.push("reza")
+	fmt.Println(stack2)
+
+	// stack1.pop()
+	fmt.Println(stack2.pop())
+	fmt.Println(stack2)
+
+	fmt.Println("is the stack empty?", stack2.isEmpty())
+
+}
+
+// this generic method accepts values of any type
+func swap[T any](a, b T) (T, T) {
+	return b, a
+}
+
+// we have made a stack that is of generic type.
+// and it will be able to hold elements of any type.
+// But all those elements should be of the same type.
+// It cannot be of mixed type.
+type stack[T any] struct {
+	elements []T
+}
+
+// a function to push values into the stack
+func (s *stack[T]) push(element T) {
+	s.elements = append(s.elements, element)
+}
+
+// a function to pop the last element from the stack
+// So what pop is going to do is it's going to access the last element of the stack.
+// It's going to remove it from the list from the slice, and it's going to return that too.
+// And the bool stands for true or false.
+// That means it's going to give an okay or not okay value that the value has been deleted or not.
+func (s *stack[T]) pop() (T, bool) {
+	if len(s.elements) == 0 {
+		var zero T
+		return zero, false
+	}
+	element := s.elements[len(s.elements)-1] // the last element in the stack
+	//we learned that when we were using slices, that if we mention the last index here or whatever index
+	// that we mentioned after the colon, that element will not be included in the resulting slice or array.
+	s.elements = s.elements[:len(s.elements)-1]
+	return element, true
+}
+
+func (s stack[T]) isEmpty() bool {
+	return len(s.elements) == 0
+}

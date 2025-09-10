@@ -1,0 +1,79 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func main() {
+	// result, err := square(4)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println(result)
+
+	// data := []byte{}
+	// // if err2 := process(data); err2 != nil {
+	// err2 := process(data)
+	// if err2 != nil {
+	// 	fmt.Println(err2)
+	// 	return
+	// }
+	// fmt.Println("No error")
+
+	// ---- error interface of built in package
+	// err3 := eprocess()
+	// if err3 != nil {
+	// 	fmt.Println(err3)
+	// 	return
+	// }
+
+	err := readData()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Data read successfully")
+}
+
+func square(x float64) (float64, error) {
+	if x < 0 {
+		// this is how we create our own custom error using the errors package.
+		return 0, errors.New("ERROR: can not apply to negative values")
+	}
+	return 1, nil
+}
+
+func process(data []byte) error {
+	if len(data) == 0 {
+		return errors.New("ERROR: empty data")
+	}
+	return nil
+}
+
+// defining a custom error
+type myError struct {
+	message string
+}
+
+// Now why are we using error with a capital E this time?
+// The Goes built in package has an interface which is the error interface.
+// And the error interface has a single method which is error error with a capital E.
+func (m *myError) Error() string {
+	return fmt.Sprintf("ERROR: %s", m.message)
+}
+func eprocess() error {
+	return &myError{"Custom error message"}
+}
+
+func readConfig() error {
+	return errors.New("Config error")
+}
+func readData() error {
+	err := readConfig()
+	if err != nil {
+		return fmt.Errorf("read error: %w", err)
+	}
+	return nil
+}

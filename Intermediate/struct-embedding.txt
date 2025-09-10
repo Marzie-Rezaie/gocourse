@@ -1,0 +1,38 @@
+package main
+
+import "fmt"
+
+type person struct {
+	name string
+	age  int
+}
+
+func (p person) Introduce() {
+	fmt.Printf("Hi, I am %s and i am %d years old \n", p.name, p.age)
+}
+
+// Override the person introduce method
+func (e employee) Introduce() {
+	fmt.Printf("Hi, I am %s and i am %d years old. my salary is %v \n", e.name, e.age, e.salary)
+}
+
+type employee struct {
+	person        // embedding struct anonymos field
+	info   person // embedding struct with named field
+	// field promotion only happens when it is an anonymous struct.
+	// so we can access via: emp.info.name not emp.name
+	id     int
+	salary float64
+}
+
+func main() {
+	emp := employee{person: person{name: "marzie", age: 20},
+		id:     10,
+		salary: 100000}
+	fmt.Println(emp.name) // accessing the embedded struct field directly
+	fmt.Println(emp.salary)
+
+	//because person is embedded into employee,
+	// we can directly access introduce from an instance of employee. (before overriding the method)
+	emp.Introduce()
+}

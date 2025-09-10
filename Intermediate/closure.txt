@@ -30,7 +30,7 @@ func main() {
 	//  And the return function captures the variable number from its surrounding context. The surrounding context is the Subtractor function.
 }
 
-// adder function is called only once okay. So that's why I is initialized to zero only once. And that's it.
+// adder function is called only once So that's why I is initialized to zero only once. And that's it.
 // So when we are calling the return function sequence, it. Increments I and returns the updated value. So now in memory we only have I. And it's not getting initialized.
 // Therefore, subsequent calls to the sequence function continue to increment I from the value it had in the previous call.
 // Once the closure is created, subsequent calls to the closure that is, the returned function use and modify the captured value of I.
