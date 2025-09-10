@@ -1,0 +1,74 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	p := Person{
+		firstName: "John",
+		lastName:  "Smith",
+		age:       27,
+		address: Address{
+			city: "Islamabad",
+		},
+		Phone: Phone{
+			home: "1212121",
+			cell: "3434343",
+		},
+	}
+	p.address.county = "Pakistan"
+
+	fmt.Println(p.firstName)
+	fmt.Println(p.lastName)
+	fmt.Println(p.address.city)
+	fmt.Println(p.address.county)
+	fmt.Println(p.address)
+	fmt.Println(p.cell) // we can access it directly because it is an anonymos field
+	fmt.Println("Before:", p.age)
+	fmt.Println(p.fullname())
+	p.IncrementAgeByOne()
+	fmt.Println("After:", p.age)
+
+	//ananymos struct
+
+	user := struct {
+		userName string
+		password string
+	}{
+		userName: "admin",
+		password: "admin123",
+	}
+
+	fmt.Println(user.userName)
+	fmt.Println(user.password)
+
+}
+
+type Person struct {
+	firstName string
+	lastName  string
+	age       int
+	address   Address
+	Phone     // anonymos field of type Phone
+}
+
+type Address struct {
+	city   string
+	county string
+}
+
+type Phone struct {
+	home string
+	cell string
+}
+
+// method with value reciever
+func (p Person) fullname() string {
+	return p.firstName + " " + p.lastName
+}
+
+// in order to access the original value and modify that, we have to use a pointer.
+// method with pointer reciver
+func (p *Person) IncrementAgeByOne() {
+	p.age++
+}
